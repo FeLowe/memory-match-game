@@ -1,11 +1,40 @@
-p {
-  display: none;
+.col-xs-4 {
+  background-color: #FAF1F1;
+  margin: 400px 100px 50px 100px;
+  height: 100px;
+  width: 100px;
 }
 
-.adopted{
-
+.container {
+  margin-left: 350px;
 }
 
-.available {
+.sun {
+content:url(sun.png);
+width: 50px;
+}
 
+.earth {
+content:url(earth.png);
+width: 50px;
+}
+
+.moon {
+content:url(moon.png);
+width: 50px;
+}
+
+.water {
+content:url(water.png);
+width: 50px;
+}
+
+.wind {
+content:url(wind.png);
+width: 50px;
+}
+
+.fire {
+content:url(fire.jpeg);
+width: 50px;
 }
