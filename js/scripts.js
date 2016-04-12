@@ -35,30 +35,24 @@ $(document).ready(function(){
   var hTMLelement = $(".col-xs-4");
   var icons = ["sun", "water", "fire", "moon", "wind", "earth"];
 
-
-
-    var counter = 0;
-    for(i = 0; i < 12; i++){
-      $(hTMLelement[i]).append('<li class="' + icons[counter] + '">' + combinedArrays[i] + '</li>');
-      counter += 1;
-      if (counter === 6) {
-        counter = 0;
-      }
-
-
+  var counter = 0;
+  for(i = 0; i < 12; i++){
+    $(hTMLelement[i]).append('<li class="back ' + icons[counter] + '">' + combinedArrays[i] + '</li>');
+    counter += 1;
+    if (counter === 6) {
+      counter = 0;
     }
+  }
 
-    // for(i = 6; i < 12; i++){
-    //   $(hTMLelement[i]).append('<li class="' + icons[i-6] + '">' + combinedArrays[i] + '</li>');
-    // }
-//
-// $(hTMLelement[i]).append("<li class='sun'>" + combinedArrays[i] + "</li>");
-// $(hTMLelement[i]).append("<li class='water'>" + combinedArrays[i] + "</li>");
-// $(hTMLelement[i]).append("<li class='fire'>" + combinedArrays[i] + "</li>");
-// $(hTMLelement[i]).append("<li class='moon'>" + combinedArrays[i] + "</li>");
-// $(hTMLelement[i]).append("<li class='wind'>" + combinedArrays[i] + "</li>");
-// $(hTMLelement[i]).append("<li class='earth'>" + combinedArrays[i] + "</li>");
-//
+  var lastClicked = $(".hiddenPlaceholder");
+  $("li").click(function(){
+    $(this).removeClass("back");
+    $(this).show("li");
+    $(lastClicked).addClass("back");
+    lastClicked = this;
+  });
+
+
 
 
 });

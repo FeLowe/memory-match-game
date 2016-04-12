@@ -9,32 +9,41 @@
   margin-left: 350px;
 }
 
+li {
+  display: none;
+}
+
 .sun {
 content:url(sun.png);
-width: 50px;
+width: 70px;
 }
 
 .earth {
 content:url(earth.png);
-width: 50px;
+width: 70px;
 }
 
 .moon {
 content:url(moon.png);
-width: 50px;
+width: 70px;
 }
 
 .water {
 content:url(water.png);
-width: 50px;
+width: 70px;
 }
 
 .wind {
 content:url(wind.png);
-width: 50px;
+width: 70px;
 }
 
 .fire {
 content:url(fire.jpeg);
-width: 50px;
+width: 70px;
+}
+.back {
+  content:url(cardBack.jpg);
+  width: 70px;
+  display: block;
 }
