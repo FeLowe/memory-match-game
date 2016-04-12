@@ -37,7 +37,7 @@ $(document).ready(function(){
   var cards2 = buildCards();
   var newGame = new Game(cards1, cards2);
   var combinedArrays = buildTotalArray(newGame.cardsOne, newGame.cardsTwo);
-    var icons = ["sun", "water", "fire", "moon", "wind", "earth"];
+  var icons = ["sun", "water", "fire", "moon", "wind", "earth"];
 
   var shuffledArray = [];
   var cardObjectsArray = [];
@@ -77,11 +77,25 @@ $(document).ready(function(){
 
   var counter = 0;
   for(i = 0; i < 12; i++){
-    $(hTMLelement[i]).append('<li class="' + newArray[i].class + '">' + newArray[i].cardValue + '</li>');
+    $(hTMLelement[i]).append('<li class="back ' + newArray[i].class + '">' + newArray[i].cardValue + '</li>');
     counter += 1;
     if (counter === 6) {
       counter = 0;
     }
   }
+
+
+  var lastClicked = $(".hiddenPlaceholder");
+
+  $("li").click(function(){
+    $(this).removeClass("back");
+    $(this).show("li");
+    if ($(this).attr('class') === $(lastClicked).attr('class')) {
+      lastClicked = $(".hiddenPlaceholder");
+    } else {
+    $(lastClicked).addClass("back");
+    lastClicked = this;
+    }
+  });
 
 });
