@@ -33,69 +33,76 @@ function Card (cardValue, className){
 //USER LOGIC//
 $(document).ready(function(){
 
-  var cards1 = buildCards();
-  var cards2 = buildCards();
-  var newGame = new Game(cards1, cards2);
-  var combinedArrays = buildTotalArray(newGame.cardsOne, newGame.cardsTwo);
-  var icons = ["sun", "water", "fire", "moon", "wind", "earth"];
+  $("form").submit(function(event){
+    event.preventDefault();
+    $("form .row .col-xs-4").empty();
+    var cards1 = buildCards();
+    var cards2 = buildCards();
+    var newGame = new Game(cards1, cards2);
+    var combinedArrays = buildTotalArray(newGame.cardsOne, newGame.cardsTwo);
+    var icons = ["sun", "water", "fire", "moon", "wind", "earth"];
 
-  var shuffledArray = [];
-  var cardObjectsArray = [];
-
-
-  counter2 = 0
-  for(i=0; i < combinedArrays.length; i++){
-    var newCard = new Card(combinedArrays[i], icons[counter2]);
-    cardObjectsArray.push(newCard);
-     counter2 = counter2 + 1
-     if (counter2 === 6){
-       counter2 = 0;
-     }
-  }
+    var shuffledArray = [];
+    var cardObjectsArray = [];
 
 
-  var lengthOfCardObjectsArray = cardObjectsArray.length;
-
-
-  for(i = 0; i < (shuffledArray.length + cardObjectsArray.length); i++){
-    var randomValue = cardObjectsArray.splice((Math.floor(Math.random() * lengthOfCardObjectsArray)), 1);
-    shuffledArray.push(randomValue);
-    lengthOfCardObjectsArray = lengthOfCardObjectsArray - 1;
-
-  }
-
-  var newArray = [];
-
-  for(i = 0; i < (shuffledArray.length + cardObjectsArray.length); i++){
-    newArray = newArray.concat(shuffledArray[i]);
-  }
-
-  var hTMLelement = $(".col-xs-4");
-
-
-
-
-  var counter = 0;
-  for(i = 0; i < 12; i++){
-    $(hTMLelement[i]).append('<li class="back ' + newArray[i].class + '">' + newArray[i].cardValue + '</li>');
-    counter += 1;
-    if (counter === 6) {
-      counter = 0;
+    counter2 = 0
+    for(i=0; i < combinedArrays.length; i++){
+      var newCard = new Card(combinedArrays[i], icons[counter2]);
+      cardObjectsArray.push(newCard);
+       counter2 = counter2 + 1
+       if (counter2 === 6){
+         counter2 = 0;
+       }
     }
-  }
 
 
-  var lastClicked = $(".hiddenPlaceholder");
+    var lengthOfCardObjectsArray = cardObjectsArray.length;
 
-  $("li").click(function(){
-    $(this).removeClass("back");
-    $(this).show("li");
-    if ($(this).attr('class') === $(lastClicked).attr('class')) {
-      lastClicked = $(".hiddenPlaceholder");
-    } else {
-    $(lastClicked).addClass("back");
-    lastClicked = this;
+
+    for(i = 0; i < (shuffledArray.length + cardObjectsArray.length); i++){
+      var randomValue = cardObjectsArray.splice((Math.floor(Math.random() * lengthOfCardObjectsArray)), 1);
+      shuffledArray.push(randomValue);
+      lengthOfCardObjectsArray = lengthOfCardObjectsArray - 1;
+
     }
+
+    var newArray = [];
+
+    for(i = 0; i < (shuffledArray.length + cardObjectsArray.length); i++){
+      newArray = newArray.concat(shuffledArray[i]);
+    }
+
+    var hTMLelement = $(".col-xs-4");
+
+
+
+
+    var counter = 0;
+    for(i = 0; i < 12; i++){
+      $(hTMLelement[i]).append('<li class="back ' + newArray[i].class + '">' + newArray[i].cardValue + '</li>');
+      counter += 1;
+      if (counter === 6) {
+        counter = 0;
+      }
+    }
+
+      var lastClicked;
+      // var lastClicked = $(".hiddenPlaceholder");
+
+      $("li").click(function(){
+        $(this).removeClass("back");
+        $(this).show("li");
+        if ($(this).attr('class') === $(lastClicked).attr('class')) {
+          lastClicked = $(".hiddenPlaceholder");
+        } else {
+        $(lastClicked).addClass("back");
+        lastClicked = this;
+        }
+      });
+
   });
+
+
 
 });
