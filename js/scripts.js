@@ -44,15 +44,17 @@ $(document).ready(function(){
     }
   }
 
-  var lastClicked = $(".hiddenPlaceholder");
+
   $("li").click(function(){
     $(this).removeClass("back");
     $(this).show("li");
+    if ($(this).attr('class') === $(lastClicked).attr('class')) {
+      lastClicked = $(".hiddenPlaceholder");
+    } else {
     $(lastClicked).addClass("back");
     lastClicked = this;
+    }
   });
 
-
-
-
 });
+var lastClicked = $(".hiddenPlaceholder");
