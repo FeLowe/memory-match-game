@@ -1,49 +1,49 @@
-.col-xs-4 {
-  background-color: #FAF1F1;
-  margin: 100px 100px 50px 100px;
-  height: 100px;
-  width: 100px;
-}
-
-.container {
-  margin-left: 350px;
+form {
+  text-align: center;
 }
 
 li {
   display: none;
+  margin: auto;
+  margin-top: 50px;
 }
+
+
 
 .sun {
 content:url(sun.png);
-width: 70px;
+width: 150px;
+
 }
 
 .earth {
 content:url(earth.png);
-width: 70px;
+width: 150px;
+
 }
 
 .moon {
 content:url(moon.png);
-width: 70px;
+width: 150px;
 }
 
 .water {
 content:url(water.png);
-width: 70px;
+width: 150px;
 }
 
 .wind {
 content:url(wind.png);
-width: 70px;
+width: 150px;
 }
 
 .fire {
 content:url(fire.jpeg);
-width: 70px;
+width: 150px;
 }
 .back {
-  content:url(cardBack.jpg);
-  width: 70px;
+  content:url(nature.jpg);
   display: block;
+  height: 150px;
+
 }
