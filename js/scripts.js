@@ -32,7 +32,6 @@ function Card (cardValue, className){
 
 //USER LOGIC//
 $(document).ready(function(){
-
   $("form").submit(function(event){
     event.preventDefault();
     $("form .row .col-xs-4").empty();
@@ -104,5 +103,5 @@ $(document).ready(function(){
   });
 
 
-
+  $("button").trigger("click");
 });
