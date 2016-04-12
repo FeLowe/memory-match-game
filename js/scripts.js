@@ -32,6 +32,11 @@ function Card (cardValue, className){
 
 //USER LOGIC//
 $(document).ready(function(){
+  var player;
+  $("#player").submit(function(event){
+    player = $("#playerName").val();
+    $("#player ul#name").append(player);
+  });
   $("form").submit(function(event){
     event.preventDefault();
     $("form .row .col-xs-4").empty();
@@ -88,10 +93,12 @@ $(document).ready(function(){
 
       var lastClicked;
       // var lastClicked = $(".hiddenPlaceholder");
-
+      var turnCounter = 0;
       $("li").click(function(){
         $(this).removeClass("back");
         $(this).show("li");
+        turnCounter ++;
+        $("#score").text("Number of clicks: " + turnCounter);
         if ($(this).attr('class') === $(lastClicked).attr('class')) {
           lastClicked = $(".hiddenPlaceholder");
         } else {
@@ -104,4 +111,5 @@ $(document).ready(function(){
 
 
   $("button").trigger("click");
+
 });
