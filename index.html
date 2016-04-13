@@ -1,29 +1,73 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="css/styles.css" rel="stylesheet" type="text/css">
-    <script src="js/jquery-1.12.3.js"></script>
-    <script src="js/scripts.js"></script>
-    <title>Magic Match</title>
-  </head>
-  <body>
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <h1 class="display-3">Let's play "Magic Match"!</h1>
-        <p class="lead">Try to match the tiles with as few clicks as possible.</p>
-        <form id="player">
-          <input id="playerName"type="text" name="Player">
-          <button type="submit" class="btn btn-info">Add me</button>
-          <ul id="name">User:
-          </ul>
-          <ul id="score">Number of clicks:
-          </ul>
-        </form>
-      </div>
-    </div>
+<head>
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+  <link href="css/styles.css" rel="stylesheet" type="text/css">
+  <script src="js/jquery-1.12.3.js"></script>
+  <script src="js/scripts.js"></script>
+  <title>Magic Match</title>
+</head>
+<body>
+  <div class="jumbotron jumbotron-fluid">
     <div class="container">
-      <form>
+      <h1 class="display-3">Let's play "Magic Match"!</h1>
+      <p class="lead">Try to match the tiles with as few clicks as possible.</p>
+      <form id="player">
+        <input id="playerName"type="text" name="Player">
+        <button type="submit" class="btn btn-info">Add me</button>
+        <ul id="name">User:
+        </ul>
+        <ul id="score">Number of clicks:
+        </ul>
+      </form>
+    </div>
+  </div>
+
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <div class = "row">
+        <div class="highScores">
+          <div class="col-xs-4">
+          <div class="highScores-user1">
+            <h3> Best score</h3>
+            <h5>User name:</h5>
+            <p class="user1-name"></p>
+            <h5>User score:</h5>
+            <p class="user1-score"></p>
+          </div>
+          </div>
+
+
+
+          <div class="col-xs-4">
+          <div class="highScores-user2">
+            <h3><h3> Second best</h3></h3>
+            <h5>User name:</h5>
+            <p class="user2-name"></p>
+            <h5>User score:</h5>
+            <p class="user2-score"></p>
+          </div>
+          </div>
+
+
+          <div class="col-xs-4">
+          <div class="highScores-user3">
+            <h3> Third best</h3>
+            <h5>User name:</h5>
+            <p class="user3-name"></p>
+            <h5>User score:</h5>
+            <p class="user3-score"></p>
+          </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div><!-- container closing div-->
+  </div><!-- jumbotron closing div-->
+
+  <div class="container main-content"> <!-- cards container-->
+    <form>
       <div class="row">
         <div class="col-xs-4">
         </div>
@@ -42,28 +86,29 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-xs-4">
-        </div>
-        <div class="col-xs-4">
-        </div>
-        <div class="col-xs-4">
-        </div>
+    <div class="row">
+      <div class="col-xs-4">
       </div>
-
-      <div class="row">
-        <div class="col-xs-4">
-        </div>
-        <div class="col-xs-4">
-        </div>
-        <div class="col-xs-4">
-        </div>
+      <div class="col-xs-4">
       </div>
-      <br>
-      <button class = "btn btn-primary" type="submit">Refresh Board
-      </button>
-    </form>
+      <div class="col-xs-4">
+      </div>
     </div>
 
-  </body>
+    <div class="row">
+      <div class="col-xs-4">
+      </div>
+      <div class="col-xs-4">
+      </div>
+      <div class="col-xs-4">
+      </div>
+    </div>
+    <br>
+    <button class = "btn btn-primary" type="submit">Refresh Board
+    </button>
+
+  </form>
+</div> <!-- container closing div-->
+
+</body>
 </html>
