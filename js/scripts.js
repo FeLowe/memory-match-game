@@ -44,7 +44,7 @@ function checkWin(winCounter) {
 }
 
 function updateHighScores(highScore) {
-  for (var i = 0; i < 3; i++) {
+  for (var i = 0; i <3; i++) {
     if (highScore.score < highScoreArray[i].score) {
       highScoreArray[i+2] = highScoreArray[i+1];
       highScoreArray[i+1] = highScoreArray[i];
@@ -64,7 +64,7 @@ function updateHighScores(highScore) {
   }
 }
 
-defaultScores = new HighScore("Player", 100);
+var defaultScores = new HighScore("Player", 100);
 var highScoreArray = [defaultScores, defaultScores, defaultScores];
 var turnCounter = 0;
 var player;
