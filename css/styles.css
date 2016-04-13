@@ -1,3 +1,7 @@
+body{
+  background-image: url(cadrBack.jpg);
+}
+
 #gameBoard {
   text-align: center;
 }
@@ -79,4 +83,5 @@ width: 150px;
   content:url(nature.jpg);
   display: block;
   height: 150px;
+  border-radius: 20px;
 }
