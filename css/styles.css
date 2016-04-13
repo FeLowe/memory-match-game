@@ -1,11 +1,22 @@
-form {
+#gameBoard {
   text-align: center;
 }
+
+#gameBoard h2{
+  margin-top: 0px;
+}
+
 
 li {
   display: none;
   margin: auto;
   margin-top: 50px;
+}
+
+.col-xs-2 {
+  margin: auto;
+  margin-top: 20px;
+  margin-left: 30px;
 }
 
 
@@ -38,12 +49,34 @@ width: 150px;
 }
 
 .fire {
-content:url(fire.jpeg);
+content:url(fire.png);
 width: 150px;
 }
+
+.rain {
+content:url(rain.png);
+width: 150px;
+}
+
+.tree {
+content:url(tree.ico);
+width: 150px;
+}
+
+.mountain {
+content:url(mountain.png);
+width: 150px;
+}
+
+.rock {
+content:url(rock.png);
+width: 150px;
+}
+
+
+
 .back {
   content:url(nature.jpg);
   display: block;
   height: 150px;
-
 }

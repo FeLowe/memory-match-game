@@ -32,27 +32,17 @@ function Card (cardValue, className){
 
 //USER LOGIC//
 $(document).ready(function(){
+
   var player;
   $("#player").submit(function(event){
     player = $("#playerName").val();
     $("#player ul#name").append(player);
   });
 
-  // var clickCount = 0;
-  // $("#level1").click(function(){
-  //   clickCount = clickCount + 1
-  //   console.log(clickCount);
-  //   clickCount = 0;
-  // });
-  //
-  // $("#level2").click(function(){
-  //   // clickCount = clickCount + 2
-  //   // console.log(clickCount);
-  //   // clickCount = 0;
-  // });
-
-
-
+  columns = "col-xs-4";
+  numberOfColumns = 3;
+  icons = ["sun", "water", "fire", "moon", "wind", "earth"];
+  numberOfCards = 6;
 
 
   $("#level1").click(function(){
@@ -68,7 +58,7 @@ $(document).ready(function(){
 
     columns = "col-xs-2";
     numberOfColumns = 5;
-    icons = ["sun", "water", "fire", "moon", "wind", "earth", "tree", "mountain", "rock", "rain"];
+    icons = ["tree", "mountain", "rock", "rain", "sun", "water", "fire", "moon", "wind", "earth", ];
     numberOfCards = 10;
 
   });
@@ -78,12 +68,12 @@ $(document).ready(function(){
   $("form").submit(function(event){
     event.preventDefault();
     $("form .row").empty();
+    console.log(icons);
 
     var cards1 = buildCards(numberOfCards);
     var cards2 = buildCards(numberOfCards);
     var newGame = new Game(cards1, cards2);
     var combinedArrays = buildTotalArray(newGame.cardsOne, newGame.cardsTwo);
-    var icons = ["sun", "water", "fire", "moon", "wind", "earth"];
 
     var shuffledArray = [];
     var cardObjectsArray = [];
@@ -149,6 +139,6 @@ $(document).ready(function(){
   });
 
 
-  // $("button").trigger("click");
+  $("button").trigger("submit");
 
 });
