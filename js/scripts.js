@@ -34,6 +34,18 @@ this.player = player;
 this.score = score;
 }
 
+function updateHighScores(highScore) {
+  for (var i = 0; i < 3; i++) {
+    if (highScore.score < highScoreArray[i].score) {
+      highScoreArray[i+2] = highScoreArray[i+1];
+      highScoreArray[i+1] = highScoreArray[i];
+      highScoreArray[i] = highScore;
+      highScoreArray = highScoreArray.slice(0, 3);
+      break;
+    }
+  }
+}
+
 defaultScores = new HighScore("Player", 100);
 var highScoreArray = [defaultScores, defaultScores, defaultScores];
 
@@ -108,18 +120,20 @@ $(document).ready(function(){
           if (winCounter === 6) {
             alert("Game Over!");
             var highScore = new HighScore(player, turnCounter);
-            if (highScore.score < highScoreArray[0].score){
-              highScoreArray[2] = highScoreArray[1];
-              highScoreArray[1] = highScoreArray[0];
-              highScoreArray[0] = highScore;
-            } else if (highScore.score < highScoreArray[1].score) {
-              highScoreArray[2] = highScoreArray[1];
-              highScoreArray[1] = highScore;
-            } else if (highScore.score < highScoreArray[1].score) {
-              highScoreArray[2] = highScore;
-            }
-            turnCounter = 0;
+            updateHighScores(highScore);
             console.log(highScoreArray);
+            // if (highScore.score < highScoreArray[0].score){
+            //   highScoreArray[2] = highScoreArray[1];
+            //   highScoreArray[1] = highScoreArray[0];
+            //   highScoreArray[0] = highScore;
+            // } else if (highScore.score < highScoreArray[1].score) {
+            //   highScoreArray[2] = highScoreArray[1];
+            //   highScoreArray[1] = highScore;
+            // } else if (highScore.score < highScoreArray[1].score) {
+            //   highScoreArray[2] = highScore;
+            // }
+            turnCounter = 0;
+
 
           }
         } else {
