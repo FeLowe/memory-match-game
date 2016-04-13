@@ -25,39 +25,40 @@
 
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
+
       <div class = "row">
         <div class="highScores">
           <div class="col-xs-4">
-          <div class="highScores-user1">
-            <h3> Best score</h3>
-            <h5>User name:</h5>
-            <p class="user1-name"></p>
-            <h5>User score:</h5>
-            <p class="user1-score"></p>
-          </div>
+            <div class="highScores-user1">
+              <h3> Best score</h3>
+              <h5>User name:</h5>
+              <p class="user1-name"></p>
+              <h5>User score:</h5>
+              <p class="user1-score"></p>
+            </div>
           </div>
 
-
-
-          <div class="col-xs-4">
-          <div class="highScores-user2">
-            <h3><h3> Second best</h3></h3>
-            <h5>User name:</h5>
-            <p class="user2-name"></p>
-            <h5>User score:</h5>
-            <p class="user2-score"></p>
-          </div>
-          </div>
 
 
           <div class="col-xs-4">
-          <div class="highScores-user3">
-            <h3> Third best</h3>
-            <h5>User name:</h5>
-            <p class="user3-name"></p>
-            <h5>User score:</h5>
-            <p class="user3-score"></p>
+            <div class="highScores-user2">
+              <h3><h3> Second best</h3></h3>
+              <h5>User name:</h5>
+              <p class="user2-name"></p>
+              <h5>User score:</h5>
+              <p class="user2-score"></p>
+            </div>
           </div>
+
+
+          <div class="col-xs-4">
+            <div class="highScores-user3">
+              <h3> Third best</h3>
+              <h5>User name:</h5>
+              <p class="user3-name"></p>
+              <h5>User score:</h5>
+              <p class="user3-score"></p>
+            </div>
           </div>
 
 
@@ -68,47 +69,35 @@
 
   <div class="container main-content"> <!-- cards container-->
     <form>
-      <div class="row">
-        <div class="col-xs-4">
-        </div>
-        <div class="col-xs-4">
-        </div>
-        <div class="col-xs-4">
-        </div>
-      </div>
+      <form id="gameBoard">
+        <h2>Choose a level.</h2>
+        <button id="level1" class="btn btn-success" type="submit">Easy Level
+        </button>
+        <button id="level2" class="btn btn-success" type="submit">Medium Level
+        </button>
+        <div class="row">
 
-      <div class="row">
-        <div class="col-xs-4">
         </div>
-        <div class="col-xs-4">
+
+        <div class="row">
+
         </div>
-        <div class="col-xs-4">
+
+        <div class="row">
+
         </div>
-      </div>
 
-    <div class="row">
-      <div class="col-xs-4">
-      </div>
-      <div class="col-xs-4">
-      </div>
-      <div class="col-xs-4">
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="col-xs-4">
-      </div>
-      <div class="col-xs-4">
-      </div>
-      <div class="col-xs-4">
-      </div>
-    </div>
-    <br>
-    <button class = "btn btn-primary" type="submit">Refresh Board
-    </button>
+        <div class="row">
 
-  </form>
-</div> <!-- container closing div-->
+        </div>
 
-</body>
-</html>
+        <br>
+        <button class = "btn btn-primary" type="submit">Refresh Board
+        </button>
+
+      </form>
+    </div> <!-- container closing div-->
+
+  </body>
+  </html>
