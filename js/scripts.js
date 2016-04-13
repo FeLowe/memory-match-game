@@ -4,9 +4,9 @@ function Game (cards1, cards2){ //<--object--//
   this.cardsTwo = cards2;
 }
 
-var buildCards = function(){ //---generates an array from 1 to 6 and pushes each # to empty cardsArray--//
+var buildCards = function(numberOfCards){ //---generates an array from 1 to 6 and pushes each # to empty cardsArray--//
   var cardsArray = [];
-  for(i=1; i <= 6; i++){
+  for(i=1; i <= numberOfCards; i++){
     cardsArray.push(i);
   }
   return cardsArray;
@@ -37,11 +37,50 @@ $(document).ready(function(){
     player = $("#playerName").val();
     $("#player ul#name").append(player);
   });
+
+  // var clickCount = 0;
+  // $("#level1").click(function(){
+  //   clickCount = clickCount + 1
+  //   console.log(clickCount);
+  //   clickCount = 0;
+  // });
+  //
+  // $("#level2").click(function(){
+  //   // clickCount = clickCount + 2
+  //   // console.log(clickCount);
+  //   // clickCount = 0;
+  // });
+
+
+
+
+
+  $("#level1").click(function(){
+    $("form .row").empty();
+    columns = "col-xs-4";
+    numberOfColumns = 3;
+    icons = ["sun", "water", "fire", "moon", "wind", "earth"];
+    numberOfCards = 6;
+  });
+
+  $("#level2").click(function(){
+    $("form .row").empty();
+
+    columns = "col-xs-2";
+    numberOfColumns = 5;
+    icons = ["sun", "water", "fire", "moon", "wind", "earth", "tree", "mountain", "rock", "rain"];
+    numberOfCards = 10;
+
+  });
+
+
+
   $("form").submit(function(event){
     event.preventDefault();
-    $("form .row .col-xs-4").empty();
-    var cards1 = buildCards();
-    var cards2 = buildCards();
+    $("form .row").empty();
+
+    var cards1 = buildCards(numberOfCards);
+    var cards2 = buildCards(numberOfCards);
     var newGame = new Game(cards1, cards2);
     var combinedArrays = buildTotalArray(newGame.cardsOne, newGame.cardsTwo);
     var icons = ["sun", "water", "fire", "moon", "wind", "earth"];
@@ -55,7 +94,7 @@ $(document).ready(function(){
       var newCard = new Card(combinedArrays[i], icons[counter2]);
       cardObjectsArray.push(newCard);
        counter2 = counter2 + 1
-       if (counter2 === 6){
+       if (counter2 === icons.length){
          counter2 = 0;
        }
     }
@@ -77,18 +116,18 @@ $(document).ready(function(){
       newArray = newArray.concat(shuffledArray[i]);
     }
 
-    var hTMLelement = $(".col-xs-4");
+    var hTMLelement = $(".row");
 
-
+    console.log(newArray);
 
 
     var counter = 0;
-    for(i = 0; i < 12; i++){
-      $(hTMLelement[i]).append('<li class="back ' + newArray[i].class + '">' + newArray[i].cardValue + '</li>');
-      counter += 1;
-      if (counter === 6) {
-        counter = 0;
+    for(i = 0; i < 4; i++){
+      for(j = 0; j < numberOfColumns; j++){
+        $(hTMLelement[i]).append('<div class="' + columns + '"><li class="back ' + newArray[counter].class + '">' + newArray[counter].cardValue + '</li></div>');
+        counter += 1;
       }
+
     }
 
       var lastClicked;
@@ -110,6 +149,6 @@ $(document).ready(function(){
   });
 
 
-  $("button").trigger("click");
+  // $("button").trigger("click");
 
 });
