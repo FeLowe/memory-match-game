@@ -35,39 +35,56 @@ this.score = score;
 }
 
 function checkWin(winCounter) {
-  if (winCounter === 6) {
+  if (winCounter === numberOfCards) {
     alert("Game Over!");
     var highScore = new HighScore(player, turnCounter);
     updateHighScores(highScore);
+    updateHighScoreDisplay();
     turnCounter = 0;
   }
 }
 
+function determineDifficulty() {
+  if (difficulty === "Easy") {
+    return highScoreArrayEasy
+  } else if (difficulty === "Medium") {
+    return highScoreArrayMedium
+  } else {
+    return highScoreArrayHard
+  }
+}
+
 function updateHighScores(highScore) {
-  for (var i = 0; i <3; i++) {
-    if (highScore.score < highScoreArray[i].score) {
-      highScoreArray[i+2] = highScoreArray[i+1];
-      highScoreArray[i+1] = highScoreArray[i];
-      highScoreArray[i] = highScore;
-      highScoreArray = highScoreArray.slice(0, 3);
-      $(".highScores").show();
-      $(".user-name").empty();
-      $(".user-score").empty();
-        $(".user1-name").text(highScoreArray[0].player);
-        $(".user1-score").text(highScoreArray[0].score);
-        $(".user2-name").text(highScoreArray[1].player);
-        $(".user2-score").text(highScoreArray[1].score);
-        $(".user3-name").text(highScoreArray[2].player);
-        $(".user3-score").text(highScoreArray[2].score);
+  for (var i = 0; i < 3; i++) {
+    var targetArray = determineDifficulty(); // Picks the right array to use for the difficulty level
+    if (highScore.score < targetArray[i].score) {
+      targetArray[i+2] = targetArray[i+1];
+      targetArray[i+1] = targetArray[i];
+      targetArray[i] = highScore;
+      targetArray = targetArray.slice(0, 3);
       break;
     }
   }
 }
 
-var defaultScores = new HighScore("Player", 100);
-var highScoreArray = [defaultScores, defaultScores, defaultScores];
+function updateHighScoreDisplay() {
+  var targetArray = determineDifficulty(); // Picks the right array to use for the difficulty level
+  $(".user1-name").text(targetArray[0].player);
+  $(".user1-score").text(targetArray[0].score);
+  $(".user2-name").text(targetArray[1].player);
+  $(".user2-score").text(targetArray[1].score);
+  $(".user3-name").text(targetArray[2].player);
+  $(".user3-score").text(targetArray[2].score);
+}
+
+var defaultScores = new HighScore("Player", 200);
+var highScoreArrayEasy = [defaultScores, defaultScores, defaultScores];
+var highScoreArrayMedium = [defaultScores, defaultScores, defaultScores];
+var highScoreArrayHard = [defaultScores, defaultScores, defaultScores];
 var turnCounter = 0;
 var player;
+var numberOfCards;
+var difficulty = "Easy";
 
 
 //USER LOGIC//
@@ -90,6 +107,9 @@ $(document).ready(function(){
     numberOfColumns = 3;
     icons = ["sun", "water", "fire", "moon", "wind", "earth"];
     numberOfCards = 6;
+    difficulty = "Easy"
+    updateHighScoreDisplay();
+
   });
 
   $("#level2").click(function(){
@@ -99,6 +119,8 @@ $(document).ready(function(){
     numberOfColumns = 5;
     icons = ["tree", "mountain", "rock", "rain", "sun", "water", "fire", "moon", "wind", "earth", ];
     numberOfCards = 10;
+    difficulty = "Medium";
+    updateHighScoreDisplay();
 
   });
 
@@ -175,9 +197,6 @@ $(document).ready(function(){
     });
   });
 
-
   $("button").trigger("submit");
-
-
 
 });
