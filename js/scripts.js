@@ -29,6 +29,14 @@ function Card (cardValue, className){
   this.class = className;
 }
 
+function HighScore(player, score){
+this.player = player;
+this.score = score;
+}
+
+defaultScores = new HighScore("Player", 100);
+var highScoreArray = [defaultScores, defaultScores, defaultScores];
+
 
 //USER LOGIC//
 $(document).ready(function(){
@@ -60,9 +68,7 @@ $(document).ready(function(){
        }
     }
 
-
     var lengthOfCardObjectsArray = cardObjectsArray.length;
-
 
     for(i = 0; i < (shuffledArray.length + cardObjectsArray.length); i++){
       var randomValue = cardObjectsArray.splice((Math.floor(Math.random() * lengthOfCardObjectsArray)), 1);
@@ -79,9 +85,6 @@ $(document).ready(function(){
 
     var hTMLelement = $(".col-xs-4");
 
-
-
-
     var counter = 0;
     for(i = 0; i < 12; i++){
       $(hTMLelement[i]).append('<li class="back ' + newArray[i].class + '">' + newArray[i].cardValue + '</li>');
@@ -90,7 +93,7 @@ $(document).ready(function(){
         counter = 0;
       }
     }
-
+      var winCounter = 0;
       var lastClicked;
       // var lastClicked = $(".hiddenPlaceholder");
       var turnCounter = 0;
@@ -101,6 +104,24 @@ $(document).ready(function(){
         $("#score").text("Number of clicks: " + turnCounter);
         if ($(this).attr('class') === $(lastClicked).attr('class')) {
           lastClicked = $(".hiddenPlaceholder");
+          winCounter ++;
+          if (winCounter === 6) {
+            alert("Game Over!");
+            var highScore = new HighScore(player, turnCounter);
+            if (highScore.score < highScoreArray[0].score){
+              highScoreArray[2] = highScoreArray[1];
+              highScoreArray[1] = highScoreArray[0];
+              highScoreArray[0] = highScore;
+            } else if (highScore.score < highScoreArray[1].score) {
+              highScoreArray[2] = highScoreArray[1];
+              highScoreArray[1] = highScore;
+            } else if (highScore.score < highScoreArray[1].score) {
+              highScoreArray[2] = highScore;
+            }
+            turnCounter = 0;
+            console.log(highScoreArray);
+
+          }
         } else {
         $(lastClicked).addClass("back");
         lastClicked = this;
