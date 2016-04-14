@@ -65,7 +65,7 @@ function updateHighScores(highScore) {
       targetArray[i+1] = targetArray[i];
       targetArray[i] = highScore;
       targetArray = targetArray.slice(0, 3);
-      localStorage.setItem(storageArray, JSON.stringify(targetArray));
+      localStorage.setItem(storageArray, JSON.stringify(targetArray))
       break;
     }
   }
@@ -83,18 +83,20 @@ function updateHighScoreDisplay() {
 
 
 var highScoreArrayEasy = JSON.parse(localStorage.getItem("easyArray"));
+
 var highScoreArrayMedium = JSON.parse(localStorage.getItem("mediumArray"));
 var highScoreArrayHard = JSON.parse(localStorage.getItem("hardArray"));
 
+
 var defaultScores = new HighScore("Player", 200);
 if (highScoreArrayEasy === null){
-var highScoreArrayEasy = [defaultScores, defaultScores, defaultScores];
+  highScoreArrayEasy = [defaultScores, defaultScores, defaultScores];
 }
 if (highScoreArrayMedium === null){
-var highScoreArrayMedium = [defaultScores, defaultScores, defaultScores];
+  highScoreArrayMedium = [defaultScores, defaultScores, defaultScores];
 }
 if (highScoreArrayHard === null){
-var highScoreArrayHard = [defaultScores, defaultScores, defaultScores];
+  highScoreArrayHard = [defaultScores, defaultScores, defaultScores];
 }
 
 var storageArray;
@@ -107,8 +109,10 @@ var difficulty = "Easy";
 $(document).ready(function(){
 
   $("#player").submit(function(event){
+    event.preventDefault();
     player = $("#playerName").val();
-    $("#player ul#name").text(player);
+    $("#player ul#name").text("User: " + player);
+    $("#playerName").val("");
   });
 
   columns = "col-xs-4";
@@ -131,6 +135,7 @@ $(document).ready(function(){
   $("#level2").click(function(){
     $("form .row").empty();
 
+
     columns = "col-xs-2";
     numberOfColumns = 5;
     icons = ["tree", "mountain", "rock", "rain", "sun", "water", "fire", "moon", "wind", "earth", ];
@@ -142,10 +147,11 @@ $(document).ready(function(){
 
 
 
-  $("form").submit(function(event){
+  $("#gameBoard").submit(function(event){
     event.preventDefault();
     $("form .row").empty();
-    console.log(icons);
+    $("#score").empty();
+    $("#name").empty();
 
     var cards1 = buildCards(numberOfCards);
     var cards2 = buildCards(numberOfCards);
@@ -194,11 +200,12 @@ $(document).ready(function(){
 
     }
     var winCounter = 0;
+    var turnCounter = 0;
     var lastClicked;
     $("li").click(function(){
       if (this != lastClicked){
         $(this).removeClass("back");
-        $(this).show("li");
+        $(this).fadeIn(500);
         turnCounter ++;
         if ($(this).attr('class') === $(lastClicked).attr('class')) {
           lastClicked = $(".hiddenPlaceholder");
@@ -213,6 +220,6 @@ $(document).ready(function(){
     });
   });
 
-  $("button").trigger("submit");
-
+  $("button").trigger("#gameBoard");
+  $("#level1").trigger("click");
 });
