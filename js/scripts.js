@@ -95,10 +95,13 @@ $(document).ready(function(){
     $("#player ul#name").text(player);
   });
 
-  columns = "col-xs-4";
-  numberOfColumns = 3;
-  icons = ["sun", "water", "fire", "moon", "wind", "earth"];
-  numberOfCards = 6;
+  var columns = "col-xs-4";
+  var numberOfColumns = 3;
+  var icons = ["sun", "water", "fire", "moon", "wind", "earth"];
+  var numberOfCards = 6;
+  var difficulty = "Easy";
+  var numberOfRows = 4;
+  var layoutId = 0;
 
 
   $("#level1").click(function(){
@@ -107,7 +110,9 @@ $(document).ready(function(){
     numberOfColumns = 3;
     icons = ["sun", "water", "fire", "moon", "wind", "earth"];
     numberOfCards = 6;
-    difficulty = "Easy"
+    difficulty = "Easy";
+    numberOfRows = 4;
+    layoutId = 0;
     updateHighScoreDisplay();
 
   });
@@ -117,9 +122,25 @@ $(document).ready(function(){
 
     columns = "col-xs-2";
     numberOfColumns = 5;
-    icons = ["tree", "mountain", "rock", "rain", "sun", "water", "fire", "moon", "wind", "earth", ];
+    icons = ["tree", "mountain", "rock", "rain", "sun", "water", "fire", "moon", "wind", "earth"];
     numberOfCards = 10;
     difficulty = "Medium";
+    layoutId = "layout";
+    numberOfRows = 4;
+    updateHighScoreDisplay();
+
+  });
+
+  $("#level3").click(function(){
+    $("form .row").empty();
+
+    columns = "col-xs-2";
+    numberOfColumns = 6;
+    icons = ["tree", "mountain", "rock", "rain", "sun", "water", "fire", "moon", "wind", "earth", "flower", "snow", "cloud", "star", "leave"];
+    numberOfCards = 15;
+    numberOfRows =  5;
+    layoutId = 0;
+    difficulty = "Hard";
     updateHighScoreDisplay();
 
   });
@@ -166,14 +187,13 @@ $(document).ready(function(){
     }
 
     var hTMLelement = $(".main-content .row");
-
-
-
     var counter = 0;
-    for(i = 0; i < 4; i++){
+    for(i = 0; i < numberOfRows; i++){
       for(j = 0; j < numberOfColumns; j++){
-        $(hTMLelement[i]).append('<div class="' + columns + '"><li class="back ' + newArray[counter].class + '">' + newArray[counter].cardValue + '</li></div>');
-        counter += 1;
+        if (counter !== 30){
+          $(hTMLelement[i]).append('<div id = "' + layoutId +'" class="' + columns + '"><li class="back ' + newArray[counter].class + '">' + newArray[counter].cardValue + '</li></div>');
+          counter += 1;
+        }
       }
 
     }
@@ -182,13 +202,14 @@ $(document).ready(function(){
     $("li").click(function(){
       if (this != lastClicked){
         $(this).removeClass("back");
-        $(this).show("li");
+        $(this).fadeIn(500);
         turnCounter ++;
         if ($(this).attr('class') === $(lastClicked).attr('class')) {
           lastClicked = $(".hiddenPlaceholder");
           winCounter ++;
           checkWin(winCounter);
-        } else {
+        }
+        else {
         $(lastClicked).addClass("back");
         lastClicked = this;
         }
