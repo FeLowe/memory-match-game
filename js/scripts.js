@@ -88,7 +88,7 @@ var highScoreArrayMedium = JSON.parse(localStorage.getItem("mediumArray"));
 var highScoreArrayHard = JSON.parse(localStorage.getItem("hardArray"));
 
 
-var defaultScores = new HighScore("Player", 200);
+var defaultScores = new HighScore("", 100);
 if (highScoreArrayEasy === null){
   highScoreArrayEasy = [defaultScores, defaultScores, defaultScores];
 }
@@ -115,13 +115,13 @@ $(document).ready(function(){
     $("#playerName").val("");
   });
 
-  var columns = "col-xs-4";
-  var numberOfColumns = 3;
-  var icons = ["sun", "water", "fire", "moon", "wind", "earth"];
-  var numberOfCards = 6;
-  var difficulty = "Easy";
-  var numberOfRows = 4;
-  var layoutId = 0;
+  // var columns = "col-xs-4";
+  // var numberOfColumns = 3;
+  // var icons = ["sun", "water", "fire", "moon", "wind", "earth"];
+  // var numberOfCards = 6;
+  // var difficulty = "Easy";
+  // var numberOfRows = 4;
+  // var layoutId = 0;
 
 
   $("#level1").click(function(){
@@ -220,7 +220,7 @@ $(document).ready(function(){
 
     }
     var winCounter = 0;
-    var turnCounter = 0;
+    turnCounter = 0;
     var lastClicked;
     $("li").click(function(){
       if (this != lastClicked){
@@ -239,8 +239,9 @@ $(document).ready(function(){
         $("#score").text("Number of clicks: " + turnCounter);
       }
     });
+    $("#refresh").show();
   });
 
   $("button").trigger("#gameBoard");
-  $("#level1").trigger("click");
+  // $("#level1").trigger("click");
 });
