@@ -46,11 +46,14 @@ function checkWin(winCounter) {
 
 function determineDifficulty() {
   if (difficulty === "Easy") {
-    return highScoreArrayEasy
+    storageArray = "easyArray";
+    return highScoreArrayEasy;
   } else if (difficulty === "Medium") {
-    return highScoreArrayMedium
+    storageArray = "mediumArray";
+    return highScoreArrayMedium;
   } else {
-    return highScoreArrayHard
+    storageArray = "hardArray";
+    return highScoreArrayHard;
   }
 }
 
@@ -62,6 +65,7 @@ function updateHighScores(highScore) {
       targetArray[i+1] = targetArray[i];
       targetArray[i] = highScore;
       targetArray = targetArray.slice(0, 3);
+      localStorage.setItem(storageArray, JSON.stringify(targetArray));
       break;
     }
   }
@@ -77,15 +81,27 @@ function updateHighScoreDisplay() {
   $(".user3-score").text(targetArray[2].score);
 }
 
+
+var highScoreArrayEasy = JSON.parse(localStorage.getItem("easyArray"));
+var highScoreArrayMedium = JSON.parse(localStorage.getItem("mediumArray"));
+var highScoreArrayHard = JSON.parse(localStorage.getItem("hardArray"));
+
 var defaultScores = new HighScore("Player", 200);
+if (highScoreArrayEasy === null){
 var highScoreArrayEasy = [defaultScores, defaultScores, defaultScores];
+}
+if (highScoreArrayMedium === null){
 var highScoreArrayMedium = [defaultScores, defaultScores, defaultScores];
+}
+if (highScoreArrayHard === null){
 var highScoreArrayHard = [defaultScores, defaultScores, defaultScores];
+}
+
+var storageArray;
 var turnCounter = 0;
 var player;
 var numberOfCards;
 var difficulty = "Easy";
-
 
 //USER LOGIC//
 $(document).ready(function(){
