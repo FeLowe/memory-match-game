@@ -7,8 +7,7 @@
 
 ## Description
 
-This is the classic memory game. Click one cards at a time to try matching the same cards on the second click. If the two cards do not match, they will flip back over and you'll have to try again. Once you match all cards the game is over and you will receive a score based on the number of clicks it took you to complete the game.
-The game has three difficulty levels you can choose from.
+This is the classic memory game. Click one card at a time to try matching the same card on the second click. If the two cards do not match, they will flip back over and you'll have to try again. Once you match all cards the game is over and you will receive a score based on the number of clicks it took you to complete the game. The game has three difficulty levels you can choose from.
 
 ## Setup/Installation Requirements
 
