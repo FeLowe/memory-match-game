@@ -4,7 +4,17 @@ function Game (cards1, cards2){ //<--object--//
   this.cardsTwo = cards2;
 }
 
-var buildCards = function(numberOfCards){ //---generates an array from 1 to 6 and pushes each # to empty cardsArray--//
+function Card (cardValue, className){
+  this.cardValue = cardValue;
+  this.class = className;
+}
+
+function HighScore(player, score){
+this.player = player;
+this.score = score;
+}
+
+var buildCards = function(numberOfCards){ //---generates an array from 1 to numberOfCards and pushes each # to empty cardsArray--//
   var cardsArray = [];
   for(i=1; i <= numberOfCards; i++){
     cardsArray.push(i);
@@ -12,7 +22,7 @@ var buildCards = function(numberOfCards){ //---generates an array from 1 to 6 an
   return cardsArray;
 }
 
-var buildTotalArray = function(cardsOneArray, cardsTwoArray){ ///- 2 loops that manipulats 2 existing arrays---//
+var buildTotalArray = function(cardsOneArray, cardsTwoArray){ ///- 2 loops that manipulate 2 existing arrays---//
   var totalArray = [];
   for(i = 0; i < cardsOneArray.length; i++){
     totalArray.push(cardsOneArray[i]);
@@ -24,15 +34,36 @@ var buildTotalArray = function(cardsOneArray, cardsTwoArray){ ///- 2 loops that 
   return totalArray;
 }
 
-function Card (cardValue, className){
-  this.cardValue = cardValue;
-  this.class = className;
+var combineArray = function(array, iconsArray){
+  counter2 = 0
+  var cardObjectsArray = [];
+  for(i=0; i < array.length; i++){
+    var newCard = new Card(array[i], iconsArray[counter2]);
+    cardObjectsArray.push(newCard);
+     counter2 = counter2 + 1
+     if (counter2 === iconsArray.length){
+       counter2 = 0;
+     }
+  }
+  return cardObjectsArray;
 }
 
-function HighScore(player, score){
-this.player = player;
-this.score = score;
+var shuffle = function(array2, length){
+  var shuffledArray = [];
+  var newArray = [];
+  for(i = 0; i < (shuffledArray.length + array2.length); i++){
+    var randomValue = array2.splice((Math.floor(Math.random() * length)), 1);
+    shuffledArray.push(randomValue);
+    length = length - 1;
+
+  }
+  for(i = 0; i < (shuffledArray.length + array2.length); i++){
+    newArray = newArray.concat(shuffledArray[i]);
+  }
+  return newArray;
 }
+
+
 
 function checkWin(winCounter) {
   if (winCounter === numberOfCards) {
@@ -73,22 +104,24 @@ function updateHighScores(highScore) {
 
 function updateHighScoreDisplay() {
   var targetArray = determineDifficulty(); // Picks the right array to use for the difficulty level
-  $(".user1-name").text(targetArray[0].player);
-  $(".user1-score").text(targetArray[0].score);
-  $(".user2-name").text(targetArray[1].player);
-  $(".user2-score").text(targetArray[1].score);
-  $(".user3-name").text(targetArray[2].player);
-  $(".user3-score").text(targetArray[2].score);
+  for(i = 0; i < 3; i++){
+    $(".user" + (i+1) + "-name").text(targetArray[i].player);
+    $(".user" + (i+1) + "-score").text(targetArray[i].score);
+
+  }
 }
 
 
 var highScoreArrayEasy = JSON.parse(localStorage.getItem("easyArray"));
-
 var highScoreArrayMedium = JSON.parse(localStorage.getItem("mediumArray"));
 var highScoreArrayHard = JSON.parse(localStorage.getItem("hardArray"));
-
-
 var defaultScores = new HighScore("", 100);
+var storageArray;
+var turnCounter = 0;
+var player;
+var numberOfCards;
+var difficulty = "Easy";
+
 if (highScoreArrayEasy === null){
   highScoreArrayEasy = [defaultScores, defaultScores, defaultScores];
 }
@@ -99,11 +132,7 @@ if (highScoreArrayHard === null){
   highScoreArrayHard = [defaultScores, defaultScores, defaultScores];
 }
 
-var storageArray;
-var turnCounter = 0;
-var player;
-var numberOfCards;
-var difficulty = "Easy";
+
 
 //USER LOGIC//
 $(document).ready(function(){
@@ -115,17 +144,10 @@ $(document).ready(function(){
     $("#playerName").val("");
   });
 
-  // var columns = "col-xs-4";
-  // var numberOfColumns = 3;
-  // var icons = ["sun", "water", "fire", "moon", "wind", "earth"];
-  // var numberOfCards = 6;
-  // var difficulty = "Easy";
-  // var numberOfRows = 4;
-  // var layoutId = 0;
-
 
   $("#level1").click(function(){
     $("form .row").empty();
+
     columns = "col-xs-4";
     numberOfColumns = 3;
     icons = ["sun", "water", "fire", "moon", "wind", "earth"];
@@ -139,7 +161,6 @@ $(document).ready(function(){
 
   $("#level2").click(function(){
     $("form .row").empty();
-
 
     columns = "col-xs-2";
     numberOfColumns = 5;
@@ -166,8 +187,6 @@ $(document).ready(function(){
 
   });
 
-
-
   $("#gameBoard").submit(function(event){
     event.preventDefault();
     $("form .row").empty();
@@ -178,35 +197,10 @@ $(document).ready(function(){
     var cards2 = buildCards(numberOfCards);
     var newGame = new Game(cards1, cards2);
     var combinedArrays = buildTotalArray(newGame.cardsOne, newGame.cardsTwo);
-
-    var shuffledArray = [];
-    var cardObjectsArray = [];
-
-
-    counter2 = 0
-    for(i=0; i < combinedArrays.length; i++){
-      var newCard = new Card(combinedArrays[i], icons[counter2]);
-      cardObjectsArray.push(newCard);
-       counter2 = counter2 + 1
-       if (counter2 === icons.length){
-         counter2 = 0;
-       }
-    }
-
+    var cardObjectsArray = combineArray(combinedArrays, icons);
     var lengthOfCardObjectsArray = cardObjectsArray.length;
+    var newArray = shuffle(cardObjectsArray, lengthOfCardObjectsArray);
 
-    for(i = 0; i < (shuffledArray.length + cardObjectsArray.length); i++){
-      var randomValue = cardObjectsArray.splice((Math.floor(Math.random() * lengthOfCardObjectsArray)), 1);
-      shuffledArray.push(randomValue);
-      lengthOfCardObjectsArray = lengthOfCardObjectsArray - 1;
-
-    }
-
-    var newArray = [];
-
-    for(i = 0; i < (shuffledArray.length + cardObjectsArray.length); i++){
-      newArray = newArray.concat(shuffledArray[i]);
-    }
 
     var hTMLelement = $(".main-content .row");
     var counter = 0;
@@ -219,6 +213,7 @@ $(document).ready(function(){
       }
 
     }
+
     var winCounter = 0;
     turnCounter = 0;
     var lastClicked;
@@ -239,7 +234,9 @@ $(document).ready(function(){
         $("#score").text("Number of clicks: " + turnCounter);
       }
     });
+
     $("#refresh").show();
+
   });
 
   $("button").trigger("#gameBoard");
