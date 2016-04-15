@@ -14,7 +14,7 @@ This is the classic memory game. Click one card at a time to try matching the sa
 * Type user name;
 * Choose a level;
 * Click on a card;
-* Find a match;
+* Find all of the matches;
 * Celebrate your low score!:)
 
 
